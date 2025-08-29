@@ -142,7 +142,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,       // Thème centralisé
       onGenerateRoute: AppRoutes.generate, // Gestionnaire de routes
-      home: const HomeScreen(),    // Écran d’accueil
+      home:  HomePage(),    // Écran d’accueil
     );
   }
 }

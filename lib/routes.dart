@@ -12,7 +12,7 @@ class AppRoutes {
   static Route<dynamic> generate(RouteSettings settings) {
     switch (settings.name) {
       case home:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(builder: (_) =>  HomePage());
       case details:
         final String? message = settings.arguments as String?;
         return MaterialPageRoute(builder: (_) => DetailsScreen(message: message));
