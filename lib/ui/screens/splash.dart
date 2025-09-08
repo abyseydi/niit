@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:niit/ui/screens/home.dart';
+import 'package:niit/ui/screens/homepage.dart';
 
 
 

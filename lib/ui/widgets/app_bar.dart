@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:niit/utils/colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -7,6 +6,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(backgroundColor: AppColors.k_primary);
+    return AppBar(backgroundColor: Colors.black);
   }
 }

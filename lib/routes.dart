@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:niit/ui/screens/details.dart';
-import 'package:niit/ui/screens/home.dart';
+import 'package:niit/ui/screens/homepage.dart';
 import 'package:niit/ui/screens/settings.dart';
 
 
