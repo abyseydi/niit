@@ -3,7 +3,6 @@ import 'package:niit/ui/screens/details.dart';
 import 'package:niit/ui/screens/homepage.dart';
 import 'package:niit/ui/screens/settings.dart';
 
-
 class AppRoutes {
   static const home = '/';
   static const details = '/details';
@@ -12,17 +11,18 @@ class AppRoutes {
   static Route<dynamic> generate(RouteSettings settings) {
     switch (settings.name) {
       case home:
-        return MaterialPageRoute(builder: (_) =>  HomePage());
+        return MaterialPageRoute(builder: (_) => HomePage());
       case details:
         final String? message = settings.arguments as String?;
-        return MaterialPageRoute(builder: (_) => DetailsScreen(message: message));
+        return MaterialPageRoute(
+          builder: (_) => DetailsScreen(message: message),
+        );
       case AppRoutes.settings:
-        return MaterialPageRoute(builder: (_) => const SettingsScreen());
+        return MaterialPageRoute(builder: (_) => const SettingsPage());
       default:
         return MaterialPageRoute(
-          builder: (_) => const Scaffold(
-            body: Center(child: Text('404 - Page not found')),
-          ),
+          builder: (_) =>
+              const Scaffold(body: Center(child: Text('404 - Page not found'))),
         );
     }
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:niit/ui/screens/settings.dart';
 import 'package:niit/utils/colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Widget> _buildScreens() {
     // Les écrans à afficher dans les onglets.
-    return [const HomePage(), const Center(child: Text("Paramètres"))];
+    return [const HomePage(), const SettingsPage()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
