@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Accel Demo',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.light, // Thème centralisé
-      onGenerateRoute: AppRoutes.generate, // Gestionnaire de routes
-      home: SplashScreen(), // Écran d’accueil
+      theme: AppTheme.light,
+      onGenerateRoute: AppRoutes.generate,
+      home: SplashScreen(),
     );
   }
 }

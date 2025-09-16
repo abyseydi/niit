@@ -24,8 +24,14 @@
 		<string>????</string>
 		<key>NSCameraUsageDescription</key>
 		<string>Cette application a besoin d'accéder à votre caméra pour scanner les plaques d'immatriculation.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Cette app accède aux photos pour lire du texte.</string>
 		<key>CFBundleVersion</key>
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
+		<key>NSAppTransportSecurity</key>
+		<dict>
+		<key>NSAllowsArbitraryLoads</key><true/>
+		</dict>
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
