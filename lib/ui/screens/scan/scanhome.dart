@@ -306,15 +306,6 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
                                     fontWeight: FontWeight.w800,
                                   ),
                             ),
-                            const SizedBox(height: 4),
-                            Text(
-                              "POC • Statuts & assurances alternés (sans doublons)",
-                              style: Theme.of(context).textTheme.bodyMedium
-                                  ?.copyWith(
-                                    color: Colors.white70,
-                                    height: 1.3,
-                                  ),
-                            ),
                           ],
                         ),
                       ),
@@ -333,7 +324,7 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
                     children: [
                       // ---- Section "Saisie & Scan"
                       _Section(
-                        title: "Saisie & Scan",
+                        title: "Saisie ou Scan",
                         accent: PoliceBrand.primary,
                         children: [
                           // Saisie
@@ -351,12 +342,16 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
                               decoration: InputDecoration(
                                 labelText: 'Plaque du véhicule',
                                 hintText: 'Ex: DK-1234-AB',
-                                prefixIcon: const Icon(Icons.onetwothree),
+                                // prefixIcon: const Icon(Icons.onetwothree), // ❌ supprimé
                                 border: OutlineInputBorder(
                                   borderRadius: PoliceBrand.radiusSm,
                                 ),
                                 filled: true,
                                 fillColor: Colors.grey.shade50,
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 14,
+                                ),
                               ),
                               onSubmitted: (_) => _addSinglePlate(),
                             ),
@@ -378,8 +373,7 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
                                     onPressed: _loading
                                         ? null
                                         : _addSinglePlate,
-                                    icon: const Icon(Icons.add),
-                                    label: const Text('Ajouter'),
+                                    label: const Text('Analyser'),
                                   ),
                                 ),
                                 const SizedBox(width: 10),
@@ -468,7 +462,7 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: Text(
-                                "Aucun véhicule. Ajoute une plaque (saisie) ou scanne via Caméra/Galerie.",
+                                "Aucun véhicule. Veuillez ajouter une plaque (saisie) ou scanner via Caméra/Galerie.",
                                 style: TextStyle(color: Colors.grey.shade700),
                               ),
                             )
@@ -512,11 +506,13 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
                                     });
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
-                                        content: Text('POC réinitialisé'),
+                                        content: Text(
+                                          'Réinitialisation effectuée',
+                                        ),
                                       ),
                                     );
                                   },
-                                  child: const Text('Réinitialiser le POC'),
+                                  child: const Text('Réinitialiser'),
                                 ),
                               ],
                             ),
@@ -524,7 +520,7 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
                         ],
                       ),
 
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 60),
                     ],
                   ),
                 ),
@@ -552,7 +548,7 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
             children: [
               Row(
                 children: [
-                  Icon(icon, color: color, size: 28),
+                  // Icon(icon, color: color, size: 28),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -564,7 +560,7 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
                     ),
                   ),
                   _Pill(
-                    icon: icon,
+                    // icon: ,
                     label: _statusLabel(info.status).toUpperCase(),
                     color: color,
                   ),
@@ -576,7 +572,7 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
                 runSpacing: 8,
                 children: [
                   _Pill(
-                    icon: info.assurance ? Icons.shield : Icons.shield_outlined,
+                    // icon: info.assurance ? Icons.shield : Icons.shield_outlined,
                     label: 'Assurance : ${info.assurance ? 'OUI' : 'NON'}',
                     color: info.assurance ? PoliceBrand.green : PoliceBrand.red,
                   ),
@@ -619,7 +615,7 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Constat sauvegardé pour ${info.plate} (POC)',
+                              'Constat sauvegardé pour ${info.plate}',
                             ),
                           ),
                         );
@@ -634,6 +630,7 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
                   ),
                 ],
               ),
+              const SizedBox(height: 100),
             ],
           ),
         );
@@ -671,7 +668,7 @@ class _PlateRecognitionScreenState extends State<PlateRecognitionScreen> {
   String _statusLabel(VehicleStatus s) {
     switch (s) {
       case VehicleStatus.vole:
-        return 'Cambriolé';
+        return 'Volé';
       case VehicleStatus.recherche:
         return 'Recherché';
       case VehicleStatus.ok:
@@ -720,12 +717,12 @@ class _VehicleCard extends StatelessWidget {
             runSpacing: 8,
             children: [
               _Pill(
-                icon: icon,
+                // icon: icon,
                 label: _statusLabel(info.status).toUpperCase(),
                 color: color,
               ),
               _Pill(
-                icon: info.assurance ? Icons.shield : Icons.shield_outlined,
+                // icon: info.assurance ? Icons.shield : Icons.shield_outlined,
                 label: 'Assurance : ${info.assurance ? 'OUI' : 'NON'}',
                 color: info.assurance ? PoliceBrand.green : PoliceBrand.red,
               ),
@@ -796,7 +793,7 @@ class _VehicleCard extends StatelessWidget {
   static String _statusLabel(VehicleStatus s) {
     switch (s) {
       case VehicleStatus.vole:
-        return 'Cambriolé';
+        return 'Volé';
       case VehicleStatus.recherche:
         return 'Recherché';
       case VehicleStatus.ok:
@@ -998,10 +995,10 @@ class _Section extends StatelessWidget {
 }
 
 class _Pill extends StatelessWidget {
-  final IconData icon;
+  // final IconData icon;
   final String label;
   final Color color;
-  const _Pill({required this.icon, required this.label, required this.color});
+  const _Pill({required this.label, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -1015,7 +1012,7 @@ class _Pill extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 16, color: color),
+          // Icon(icon, size: 16, color: color),
           const SizedBox(width: 6),
           Text(
             label,
