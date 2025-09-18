@@ -20,10 +20,7 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.niit"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -32,13 +29,38 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+            // Signe avec les clés debug pour l’instant (comme avant)
             signingConfig = signingConfigs.getByName("debug")
+
+            // 🔧 Active R8 + shrink et pointe vers les règles ProGuard
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                file("proguard-rules.pro")
+            )
+        }
+        debug {
+            // pas de shrink en debug
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
 }
 
 flutter {
     source = "../.."
+}
+
+// ✅ Dépendances ML Kit : commence par latin.
+// Si R8 se plaint encore d’autres scripts, dé-commente ceux nécessaires.
+dependencies {
+    // OCR latin (souvent suffisant)
+    implementation("com.google.mlkit:text-recognition:16.0.0")
+
+    // --- Ajoute UNIQUEMENT si R8 continue de référencer ces scripts ---
+    // implementation("com.google.mlkit:text-recognition-chinese:16.0.0")
+    // implementation("com.google.mlkit:text-recognition-devanagari:16.0.0")
+    // implementation("com.google.mlkit:text-recognition-japanese:16.0.0")
+    // implementation("com.google.mlkit:text-recognition-korean:16.0.0")
 }

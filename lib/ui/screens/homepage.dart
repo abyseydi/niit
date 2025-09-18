@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:niit/ui/screens/notification.dart';
 import 'package:niit/ui/screens/scan/scanhome.dart';
 import 'package:niit/ui/widgets/app_bar.dart';
 import 'package:niit/utils/colors.dart';
@@ -62,11 +63,21 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  Container(
-                    child: Icon(
-                      Icons.notification_add_outlined,
-                      color: AppColors.k_primary_black,
-                      size: 28,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const NotificationHome(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      child: Icon(
+                        Icons.notification_add_outlined,
+                        color: AppColors.k_primary_black,
+                        size: 28,
+                      ),
                     ),
                   ),
                 ],
@@ -74,7 +85,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 20),
               Container(
                 child: Text(
-                  "Protégez, servez, avec rapidité.",
+                  "Dans l’honneur, au service de la loi.",
                   style: TextStyle(
                     fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.bold,
@@ -93,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                   _buildCard(
                     context,
                     Icons.document_scanner,
-                    'Scanner de Plaques',
+                    'Détection de plaque',
                     () {
                       Navigator.push(
                         context,
